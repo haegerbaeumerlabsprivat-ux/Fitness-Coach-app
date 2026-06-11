@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 const WEBHOOK_URL =
-  "https://nicklaurin.app.n8n.cloud/webhook/80b26119-b997-435d-88a7-36dd69960250/chat";
+  "https://nicklaurin.app.n8n.cloud/webhook/fitness-coach";
 
 export async function POST(req: NextRequest) {
   const { message, sessionId } = await req.json();
