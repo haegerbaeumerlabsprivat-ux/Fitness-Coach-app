@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 
+const WEBHOOK_URL =
+  "https://nicklaurin.app.n8n.cloud/webhook/80b26119-b997-435d-88a7-36dd69960250/chat";
+
 export async function POST(req: NextRequest) {
   const { message, sessionId } = await req.json();
 
@@ -7,12 +10,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Message is required" }, { status: 400 });
   }
 
-  const webhookUrl = process.env.N8N_WEBHOOK_URL;
-  if (!webhookUrl) {
-    return NextResponse.json({ error: "Webhook not configured" }, { status: 500 });
-  }
-
-  const n8nResponse = await fetch(webhookUrl, {
+  const n8nResponse = await fetch(WEBHOOK_URL, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
